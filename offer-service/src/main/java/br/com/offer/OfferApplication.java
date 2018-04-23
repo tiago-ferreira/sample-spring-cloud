@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients("br.com.offer.service")
+@EnableFeignClients
 @EnableHystrix
 @EnableCircuitBreaker
 public class OfferApplication {
