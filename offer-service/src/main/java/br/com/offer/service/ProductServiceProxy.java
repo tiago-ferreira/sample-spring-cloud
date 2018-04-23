@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "api-gateway-server")
+@FeignClient(name = "api-gateway-server", fallback = ProductFallback.class)
 @RibbonClient(name = "product-service")
 public interface ProductServiceProxy {
 
