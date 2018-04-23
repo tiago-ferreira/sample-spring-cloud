@@ -2,7 +2,10 @@ package br.com.offer.service;
 
 import br.com.offer.exceptions.ResourceNotFoundException;
 import br.com.offer.model.Offer;
+import br.com.offer.model.Product;
 import br.com.offer.repository.OfferRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +17,11 @@ public class OfferService {
     @Autowired
     private OfferRepository offerRepository;
 
+    @Autowired
+    private ProductServiceProxy proxy;
+
     public Offer save(Offer offer) {
+        offer.setProducts(proxy.retriveProducts());
         return offerRepository.save(offer);
     }
 
