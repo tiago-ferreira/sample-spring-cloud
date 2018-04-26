@@ -2,6 +2,8 @@ package br.com.product.controller;
 
 import br.com.product.model.Product;
 import br.com.product.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private ProductService productService;
 
@@ -23,7 +27,9 @@ public class ProductController {
 
     @GetMapping
     public List<Product> findAll() {
-        return productService.findAll();
+        List<Product> products = productService.findAll();
+        logger.info("{}", products);
+        return products;
     }
 
     @PostMapping

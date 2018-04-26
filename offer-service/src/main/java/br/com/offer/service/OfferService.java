@@ -14,6 +14,9 @@ import java.util.List;
 @Service
 public class OfferService {
 
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private OfferRepository offerRepository;
 
@@ -21,7 +24,9 @@ public class OfferService {
     private ProductServiceProxy proxy;
 
     public Offer save(Offer offer) {
-        offer.setProducts(proxy.retriveProducts());
+        List<Product> products = proxy.retriveProducts();
+        logger.info("{}", products);
+        offer.setProducts(products);
         return offerRepository.save(offer);
     }
 
